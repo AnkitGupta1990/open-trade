@@ -13,8 +13,70 @@
         <maven.compiler.source>1.7</maven.compiler.source>
     	<maven.compiler.target>1.7</maven.compiler.target>
     </properties>
-    
     <dependencies>
+	   <dependency>
+			<groupId>com.orade.test</groupId>
+			<artifactId>example-test</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/bcpg-jdk15on-1.47.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.orade.test</groupId>
+			<artifactId>example-test1</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/bcpg-jdk16-1.46.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.orade.test</groupId>
+			<artifactId>example-test2</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/bcprov-jdk16-1.45.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.orade.test</groupId>
+			<artifactId>example-test3</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/gson-2.2.4.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.orade.test</groupId>
+			<artifactId>example-test4</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/jsoup-1.8.3.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.orade.test</groupId>
+			<artifactId>example-test5</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/mysql-connector-java-5.1.38.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.orade.test</groupId>
+			<artifactId>example-test6</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/servlet-api-2.5.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.orade.test</groupId>
+			<artifactId>example-test7</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/slf4j-api-1.8.0-beta4.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.orade.test</groupId>
+			<artifactId>example-test8</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/org.eclipse.jgit-5.3.0.201903130848-r.jar</systemPath>
+		</dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
