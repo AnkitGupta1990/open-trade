@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee     http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+version="3.0">
+  	<listener>
+	    <listener-class>BackgroudTask</listener-class>
+	</listener>
+	<servlet>
+	   <servlet-name>HelloWorld</servlet-name>
+	   <servlet-class>HelloWorld</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	   <servlet-name>HelloWorld</servlet-name>
+	   <url-pattern>/HelloWorld</url-pattern>
+	</servlet-mapping>
+	<servlet>
+	   <servlet-name>UpdateTodayStocks</servlet-name>
+	   <servlet-class>UpdateTodayStocks</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	   <servlet-name>UpdateTodayStocks</servlet-name>
+	   <url-pattern>/UpdateTodayStocks</url-pattern>
+	</servlet-mapping>
+	<servlet>
+	   <servlet-name>GetTodayStocks</servlet-name>
+	   <servlet-class>GetTodayStocks</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	   <servlet-name>GetTodayStocks</servlet-name>
+	   <url-pattern>/GetTodayStocks</url-pattern>
+	</servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+</web-app>
