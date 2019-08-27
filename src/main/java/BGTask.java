@@ -117,6 +117,7 @@ public class BGTask implements Runnable {
 		String string = null;
 		if (result.next()) {
 			string = result.getString(1);
+			System.out.println("DB Result : " + string);
 			CommonUtil.closeDBConnection();
 		}
 		return string;
