@@ -54,7 +54,7 @@
 			<artifactId>example-test5</artifactId>
 			<version>1.0</version>
 			<scope>system</scope>
-			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/mysql-connector-java-5.1.38.jar</systemPath>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/mysql-connector-java-8.0.17.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.orade.test</groupId>
