@@ -29,6 +29,14 @@ version="3.0">
 	   <servlet-name>GetTodayStocks</servlet-name>
 	   <url-pattern>/GetTodayStocks</url-pattern>
 	</servlet-mapping>
+	<servlet>
+	   <servlet-name>OpenShiftTodayStocksUpdater</servlet-name>
+	   <servlet-class>OpenShiftTodayStocksUpdater</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	   <servlet-name>OpenShiftTodayStocksUpdater</servlet-name>
+	   <url-pattern>/OpenShiftTodayStocksUpdater</url-pattern>
+	</servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>

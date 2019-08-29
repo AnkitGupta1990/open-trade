@@ -1,6 +1,5 @@
 
 import java.text.DecimalFormat;
-import java.util.Date;
 import java.util.List;
 
 public class OptionData implements Cloneable {
@@ -10,6 +9,7 @@ public class OptionData implements Cloneable {
 	private String symbol;
 	private String type;
 	private Double strikePrice = 0d;
+	private Double reverseStrikePrice = 0d;
 	
 	private Double gain = 0d;
 	private Double buy = 0d;
@@ -58,6 +58,12 @@ public class OptionData implements Cloneable {
 	}
 	public void setStrikePrice(Double strikePrice) {
 		this.strikePrice = Double.parseDouble(df.format(strikePrice));
+	}
+	public Double getReverseStrikePrice() {
+		return reverseStrikePrice;
+	}
+	public void setReverseStrikePrice(Double reverseStrikePrice) {
+		this.reverseStrikePrice = reverseStrikePrice;
 	}
 	public Double getGain() {
 		return gain;

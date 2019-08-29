@@ -10,11 +10,14 @@ public class CommonUtil {
 
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://172.30.24.94:3306/test";
-	//static final String DB_URL = "jdbc:mysql://localhost:3306/auto_trade?useSSL=false";
+	//static final String DB_URL = "jdbc:mysql://localhost:3306/s_test?useSSL=false";
 	static final String password = "root";
 	//static final String password = "root";
 	static Connection conn = null;
 	static Statement stmt = null;
+	
+	static String rootDirForStockCSV = "StockData/";
+	static String rootDirForOptionCSV = "OptionData/";
 
 	public static void openDBConnection() {
 		try {
