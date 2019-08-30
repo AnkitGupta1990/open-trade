@@ -9,9 +9,9 @@ import java.util.Date;
 public class CommonUtil {
 
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12303442?useSSL=false&useUnicode=yes&characterEncoding=UTF-8&allowLoadLocalInfile=true";
+	static final String DB_URL = "jdbc:mysql://remotemysql.com:3306/XRwYzocnQN";
 	//static final String DB_URL = "jdbc:mysql://localhost:3306/s_test?useSSL=false";
-	static final String password = "aptyqRXkmX";
+	static final String password = "lyCfdeEiEn";
 	//static final String password = "root";
 	static Connection conn = null;
 	static Statement stmt = null;
@@ -22,7 +22,7 @@ public class CommonUtil {
 	public static void openDBConnection() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection(DB_URL, "sql12303442", password);
+			conn = DriverManager.getConnection(DB_URL, "XRwYzocnQN", password);
 			stmt = conn.createStatement();
 		} catch (Exception e) {
 			e.printStackTrace();
