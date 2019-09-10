@@ -124,6 +124,16 @@ public class BGTask implements Runnable {
 	}
 
 	public void insert(OptionData data, boolean noOpenBuy) throws SQLException {
+		Double buyPrice = data.getOpen();
+		if (noOpenBuy) {
+			buyPrice = data.getBuyPrice();
+		}
+		if (data.isReverseTrade()) {
+			buyPrice = data.getCurrentPrice();
+		}
+		if(!data.isSell() && buyPrice <= 0) {
+			return;
+		}
 		if (data.isReverseTrade() && !data.isExecuteReverseTrade()) {
 			return;
 		}
@@ -136,13 +146,6 @@ public class BGTask implements Runnable {
 				if (data.getOpen() > data.getBuyPrice()) {
 					// return;
 				}
-			}
-			Double buyPrice = data.getOpen();
-			if (noOpenBuy) {
-				buyPrice = data.getBuyPrice();
-			}
-			if (data.isReverseTrade()) {
-				buyPrice = data.getCurrentPrice();
 			}
 			String sql = "INSERT IGNORE INTO AUTO_TRADES (`date`, SYMBOL, OPTION_TYP, STRIKE_PR, BUY) VALUES(DATE(NOW()), '"
 					+ data.getSymbol() + "', '" + data.getType() + "', '" + data.getStrikePrice() + "', '" + buyPrice
