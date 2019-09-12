@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 public class BGTask implements Runnable {
@@ -18,6 +19,8 @@ public class BGTask implements Runnable {
 	static Set<String> sell = new HashSet<>();
 
 	public void run() {
+		TimeZone.setDefault(TimeZone.getTimeZone("IST"));
+		System.out.println("NOW : " + new Date());
 		try {
 			while (true) {
 				if (date == null || !isDateEqual(date, new Date())) {
