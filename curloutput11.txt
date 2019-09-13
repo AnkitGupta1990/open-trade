@@ -1,0 +1,1 @@
+{"ok":true,"result":{"message_id":801,"from":{"id":834944814,"is_bot":true,"first_name":"Ankit","username":"AnkitMangal_bot"},"chat":{"id":771084079,"first_name":"An","type":"private"},"date":1568375485,"text":"Sell FEDERALBNK CE 87.5 at 1.0"}}

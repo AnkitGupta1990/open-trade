@@ -19,8 +19,8 @@ public class BGTask implements Runnable {
 	static Set<String> sell = new HashSet<>();
 
 	public void run() {
-		TimeZone.setDefault(TimeZone.getTimeZone("IST"));
-		System.out.println("NOW : " + new Date());
+		//TimeZone.setDefault(TimeZone.getTimeZone("IST"));
+		//System.out.println("NOW : " + new Date());
 		try {
 			while (true) {
 				if (date == null || !isDateEqual(date, new Date())) {
@@ -101,6 +101,7 @@ public class BGTask implements Runnable {
 				if (new Date().getHours() >= 16) {
 					buy.clear();
 					sell.clear();
+					date = null;
 					System.out.println("sleeping now for " + (32 - new Date().getHours()) + " .....");
 					TimeUnit.HOURS.sleep(32 - new Date().getHours());
 				}

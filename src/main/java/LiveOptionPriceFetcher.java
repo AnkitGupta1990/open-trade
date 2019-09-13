@@ -48,7 +48,7 @@ public class LiveOptionPriceFetcher {
 			try {
 				data.setCurrentPrice(1d);
 				data.setOpen(1d);
-				data.setLow(1d);
+				data.setLow(0.5d);
 				
 				data.setBuyPrice(1d);
 				data.setSellPrice(1d);
