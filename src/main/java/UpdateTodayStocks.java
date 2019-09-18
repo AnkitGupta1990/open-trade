@@ -20,14 +20,14 @@ public class UpdateTodayStocks extends HttpServlet {
    }
    
    public void insert(String today_stocks) {
-		String sql = "INSERT INTO today_stocks (today_stocks, `date`) VALUES('"+today_stocks+"', DATE(DATE_ADD(NOW(),INTERVAL 1 DAY)))";
+		String sql = "INSERT INTO today_stocks (today_stocks, `date`) VALUES('"+today_stocks+"', DATE(NOW()))";
 		System.out.println(sql);
 		CommonUtil.openDBConnection();
 		try {
 			CommonUtil.stmt.executeUpdate(sql);
 		} catch (SQLException e) {
 			System.out.println(e.getLocalizedMessage());
-			sql = "UPDATE today_stocks set today_stocks = '"+today_stocks+"' WHERE DATE(date) =  DATE(DATE_ADD(NOW(),INTERVAL 1 DAY))";
+			sql = "UPDATE today_stocks set today_stocks = '"+today_stocks+"' WHERE DATE(date) =  DATE(NOW())";
 			System.out.println(sql);
 			try {
 				CommonUtil.stmt.executeUpdate(sql);
