@@ -15,7 +15,8 @@ public class DataUploader {
 	}
 	
 	public static void main(String[] args) throws ParseException, Exception {
-		
+		Date startDate = new SimpleDateFormat("dd-MM-yyyy").parse("16-09-2019");
+		uploadOptionData(startDate, true);
 	}
 
 	public static void uploadOptionData(Date date, boolean loadFromLocal) throws Exception {
@@ -40,7 +41,7 @@ public class DataUploader {
 				return;
 			}
 			 
-			String sql = "LOAD DATA LOCAL INFILE '" + csvFile + "' " +
+			/*String sql = "LOAD DATA LOCAL INFILE '" + csvFile + "' " +
 							"INTO TABLE Option_History_V2_2019 " +
 							"FIELDS TERMINATED BY ',' " +
 							"OPTIONALLY ENCLOSED BY '\"' " + 
@@ -49,12 +50,39 @@ public class DataUploader {
 							"(INSTRUMENT, SYMBOL, EXPIRY_DT, STRIKE_PR, OPTION_TYP, `OPEN`, HIGH, LOW, `CLOSE`, SETTLE_PR, CONTRACTS, VAL_INLAKH, OPEN_INT, CHG_IN_OI) " +
 							"SET date = '" + new java.sql.Date(date.getTime()) + "';";
 			System.out.println(sql);
-			insertInDB(sql);
+			insertInDB(sql);*/
+			writeToDB(csvFile);
 			
 			insertInDB("delete from Option_History_V2_2019 where MONTH(str_to_date(EXPIRY_DT, '%d-%M-%Y')) != MONTH(date) OR INSTRUMENT != 'OPTSTK'");
 		} catch (Exception e) {
 			System.out.println("Holiday 1" + date);
 			e.printStackTrace();
+		}
+	}
+	
+	private static void writeToDB(String csvFile) throws Exception {
+		BufferedReader br = new BufferedReader(new FileReader(csvFile));
+		String line = "";
+		String cvsSplitBy = ",";
+		while ((line = br.readLine()) != null) {
+			String[] file = line.split(cvsSplitBy);
+			if(!file[0].equalsIgnoreCase("OPTSTK")) {
+				continue;
+			}
+			Date date = new SimpleDateFormat("dd-MMM-yyyy").parse(file[14].trim());
+			Date expiryDate = new SimpleDateFormat("dd-MMM-yyyy").parse(file[2].trim());
+			if(date.getMonth() != expiryDate.getMonth()) {
+				continue;
+			}
+			String sql = "INSERT IGNORE INTO s_test.Option_History_V21_2019 (INSTRUMENT, SYMBOL, EXPIRY_DT, STRIKE_PR, OPTION_TYP, `OPEN`, HIGH, LOW, `CLOSE`, SETTLE_PR, CONTRACTS, VAL_INLAKH, OPEN_INT, CHG_IN_OI, `DATE`) "
+					+ "VALUES ('" + file[0].trim() + "', '" + file[1].trim() + "', '" + file[2].trim() 
+					+ "', '" + Double.parseDouble(file[3].trim()) + "', '" + file[4].trim() 
+					+ "', '" + Double.parseDouble(file[5].trim()) + "', '" + Double.parseDouble(file[6].trim()) + "', '" + Double.parseDouble(file[7].trim())
+					+ "', '" + Double.parseDouble(file[8].trim()) + "', '" + Double.parseDouble(file[9].trim()) + "', '" + Double.parseDouble(file[10].trim()) 
+					+ "', '" + Double.parseDouble(file[11].trim()) + "', '" + Double.parseDouble(file[12].trim()) + "', '" + Double.parseDouble(file[13].trim())
+					+ "', '" + new java.sql.Date(date.getTime()) + "');";
+			//System.out.println(sql);
+			insertInDB(sql);
 		}
 	}
 	
