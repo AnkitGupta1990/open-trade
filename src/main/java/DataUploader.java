@@ -74,7 +74,7 @@ public class DataUploader {
 			if(date.getMonth() != expiryDate.getMonth()) {
 				continue;
 			}
-			String sql = "INSERT IGNORE INTO s_test.Option_History_V21_2019 (INSTRUMENT, SYMBOL, EXPIRY_DT, STRIKE_PR, OPTION_TYP, `OPEN`, HIGH, LOW, `CLOSE`, SETTLE_PR, CONTRACTS, VAL_INLAKH, OPEN_INT, CHG_IN_OI, `DATE`) "
+			String sql = "INSERT IGNORE INTO s_test.Option_History_V2_2019 (INSTRUMENT, SYMBOL, EXPIRY_DT, STRIKE_PR, OPTION_TYP, `OPEN`, HIGH, LOW, `CLOSE`, SETTLE_PR, CONTRACTS, VAL_INLAKH, OPEN_INT, CHG_IN_OI, `DATE`) "
 					+ "VALUES ('" + file[0].trim() + "', '" + file[1].trim() + "', '" + file[2].trim() 
 					+ "', '" + Double.parseDouble(file[3].trim()) + "', '" + file[4].trim() 
 					+ "', '" + Double.parseDouble(file[5].trim()) + "', '" + Double.parseDouble(file[6].trim()) + "', '" + Double.parseDouble(file[7].trim())
