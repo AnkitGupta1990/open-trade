@@ -27,11 +27,16 @@ public class BGTask implements Runnable {
 					System.out.println("Fetching Today Stocks.....");
 					String todayStocks = getTodayStocks();
 					if (todayStocks == null || todayStocks == "") {
-						buy.clear();
-						sell.clear();
-						date = new Date();
-						System.out.println("No Today Stocks found!!!");
-						continue;
+						OpenShiftTodayStocksUpdater.updateOpenShiftStocks(null);
+						System.out.println("Fetching Today Stocks Again.....");
+						todayStocks = getTodayStocks();
+						if (todayStocks == null || todayStocks == "") {
+							buy.clear();
+							sell.clear();
+							date = new Date();
+							System.out.println("No Today Stocks found!!!");
+							continue;
+						}
 					}
 					LiveOptionPriceFetcher.list = new ArrayList<OptionData>();
 					String[] str = todayStocks.split(",");
