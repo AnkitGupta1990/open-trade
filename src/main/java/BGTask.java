@@ -23,6 +23,9 @@ public class BGTask implements Runnable {
 		//System.out.println("NOW : " + new Date());
 		try {
 			while (true) {
+				if (!isTradingOn()) {
+					TimeUnit.HOURS.sleep(24);
+				}
 				if (date == null || !isDateEqual(date, new Date())) {
 					System.out.println("Fetching Today Stocks.....");
 					String todayStocks = getTodayStocks();
