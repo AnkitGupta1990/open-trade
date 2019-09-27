@@ -53,7 +53,7 @@ public class DataUploader {
 			insertInDB(sql);*/
 			writeToDB(csvFile);
 			
-			insertInDB("delete from Option_History_V2_2019 where MONTH(str_to_date(EXPIRY_DT, '%d-%M-%Y')) != MONTH(date) OR INSTRUMENT != 'OPTSTK'");
+			//insertInDB("delete from Option_History_V2_2019 where MONTH(str_to_date(EXPIRY_DT, '%d-%M-%Y')) != MONTH(date) OR INSTRUMENT != 'OPTSTK'");
 		} catch (Exception e) {
 			System.out.println("Holiday 1" + date);
 			e.printStackTrace();
@@ -71,7 +71,7 @@ public class DataUploader {
 			}
 			Date date = new SimpleDateFormat("dd-MMM-yyyy").parse(file[14].trim());
 			Date expiryDate = new SimpleDateFormat("dd-MMM-yyyy").parse(file[2].trim());
-			if(date.getMonth() != expiryDate.getMonth()) {
+			if(date.getMonth() != (expiryDate.getMonth()-1)) {
 				continue;
 			}
 			String sql = "INSERT IGNORE INTO Option_History_V2_2019 (INSTRUMENT, SYMBOL, EXPIRY_DT, STRIKE_PR, OPTION_TYP, `OPEN`, HIGH, LOW, `CLOSE`, SETTLE_PR, CONTRACTS, VAL_INLAKH, OPEN_INT, CHG_IN_OI, `DATE`) "
