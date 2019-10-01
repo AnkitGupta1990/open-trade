@@ -106,7 +106,7 @@ public class BGTask implements Runnable {
 					}
 				}
 
-				if (new Date().getHours() >= 16) {
+				if (new Date().getHours() >= 16 || (new Date().getHours() == 15 && new Date().getMinutes() > 37)) {
 					buy.clear();
 					sell.clear();
 					date = null;
@@ -168,7 +168,7 @@ public class BGTask implements Runnable {
 						+ " WHERE DATE(`date`) = DATE(NOW()) AND SYMBOL = '" + data.getSymbol() + "' AND OPTION_TYP = '"
 						+ data.getType() + "' AND STRIKE_PR = '" + data.getStrikePrice() + "'";
 			}
-			System.out.println(sql);
+			//System.out.println(sql);
 			CommonUtil.openDBConnection();
 			CommonUtil.stmt.executeUpdate(sql);
 			CommonUtil.closeDBConnection();
@@ -197,7 +197,7 @@ public class BGTask implements Runnable {
 		}
 
 		String sql = "SELECT count(*) FROM `holiday_dates` where DATE(date) = DATE(NOW())";
-		System.out.println(sql);
+		//System.out.println(sql);
 		CommonUtil.openDBConnection();
 		ResultSet result = CommonUtil.stmt.executeQuery(sql);
 		result.next();

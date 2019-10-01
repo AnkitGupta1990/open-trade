@@ -71,7 +71,7 @@ public class DataUploader {
 			}
 			Date date = new SimpleDateFormat("dd-MMM-yyyy").parse(file[14].trim());
 			Date expiryDate = new SimpleDateFormat("dd-MMM-yyyy").parse(file[2].trim());
-			if(date.getMonth() != (expiryDate.getMonth()-1)) {
+			if(date.getMonth() != expiryDate.getMonth()) {
 				continue;
 			}
 			String sql = "INSERT IGNORE INTO Option_History_V2_2019 (INSTRUMENT, SYMBOL, EXPIRY_DT, STRIKE_PR, OPTION_TYP, `OPEN`, HIGH, LOW, `CLOSE`, SETTLE_PR, CONTRACTS, VAL_INLAKH, OPEN_INT, CHG_IN_OI, `DATE`) "
