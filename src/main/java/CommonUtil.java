@@ -9,7 +9,7 @@ import java.util.Date;
 public class CommonUtil {
 
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://remotemysql.com:3306/XRwYzocnQN";
+	static final String DB_URL = "jdbc:mysql://remotemysql.com:3306/XRwYzocnQN?useSSL=false";
 	//static final String DB_URL = "jdbc:mysql://localhost:3306/s_test?useSSL=false";
 	static final String password = "lyCfdeEiEn";
 	//static final String password = "root";
