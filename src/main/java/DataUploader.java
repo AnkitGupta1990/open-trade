@@ -24,6 +24,8 @@ public class DataUploader {
 		try {
 			SimpleDateFormat df = new SimpleDateFormat("ddMMMyyyy");
 			String folder = CommonUtil.rootDirForOptionCSV + (date.getYear() + 1900);
+			File dir = new File(folder);
+		    if (!dir.exists()) dir.mkdirs();
 			String csvFile = folder + "/fo" + df.format(date).toUpperCase() + "bhav.csv";
 			String zipFile = csvFile + ".zip";
 			
@@ -91,6 +93,9 @@ public class DataUploader {
 		BufferedReader br1 = null;
 		try {
 			String folder = CommonUtil.rootDirForStockCSV + (date.getYear() + 1900);
+			File dir = new File(folder);
+		    if (!dir.exists()) dir.mkdirs();
+		    
 			SimpleDateFormat df = new SimpleDateFormat("ddMM");
 			SimpleDateFormat df2 = new SimpleDateFormat("MMM");
 			SimpleDateFormat df3 = new SimpleDateFormat("ddMMM");

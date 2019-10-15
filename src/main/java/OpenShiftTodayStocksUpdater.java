@@ -51,6 +51,7 @@ public class OpenShiftTodayStocksUpdater extends HttpServlet {
 			}
 			getDates();
 			year = latestDBDate.getYear() + 1900;
+			list = new ArrayList<>();
 			run(latestDBDate);
 			updateOpenShiftTodayStocks();
 			System.out.println("Done");
