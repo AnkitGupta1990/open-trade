@@ -122,6 +122,13 @@ public class DataUploader {
 				return;
 			}
 			
+			SimpleDateFormat df1 = new SimpleDateFormat("ddMMMyyyy");
+			String folder1 = CommonUtil.rootDirForOptionCSV + (date.getYear() + 1900);
+			String csvFile1 = folder1 + "/fo" + df1.format(date).toUpperCase() + "bhav.csv";
+			if(!new File(csvFile1).exists()) {
+				return;
+			}
+			
 			br = new BufferedReader(new FileReader(csvFile));
 			String line = "";
 			String cvsSplitBy = ",";
