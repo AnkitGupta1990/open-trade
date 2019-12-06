@@ -96,7 +96,7 @@ public class OpenShiftTodayStocksUpdater extends HttpServlet {
 	
 	public static void updateOpenShiftTodayStocks() throws Exception {
 		System.out.println("Committing to Open-Shift");
-		String[] command = new String[]{"curl", "http://open-trade-o-trade.apps.us-west-1.starter.openshift-online.com/UpdateTodayStocks?today_stocks="+URLEncoder.encode(replacement.replace("'", ""), "UTF-8" )};
+		String[] command = new String[]{"curl", "http://open-trade-open-trade.apps.ca-central-1.starter.openshift-online.com/UpdateTodayStocks?today_stocks="+URLEncoder.encode(replacement.replace("'", ""), "UTF-8" )};
 		executeCommand(command);
 		System.out.println("Open-Shift Done");
 	}
