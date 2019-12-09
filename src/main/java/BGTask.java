@@ -36,6 +36,8 @@ public class BGTask implements Runnable {
 						if (todayStocks == null || todayStocks == "") {
 							buy.clear();
 							sell.clear();
+							BGTaskV2.buy.clear();
+							BGTaskV2.sell.clear();
 							date = new Date();
 							System.out.println("No Today Stocks found!!!");
 							continue;
@@ -56,16 +58,22 @@ public class BGTask implements Runnable {
 					System.out.println("Fetching Today Stocks Done!!!");
 					buy.clear();
 					sell.clear();
+					BGTaskV2.buy.clear();
+					BGTaskV2.sell.clear();
 					date = new Date();
 				}
 				if (new Date().getHours() == 9 && new Date().getMinutes() == 00 && !isTradingOn()) {
 					buy.clear();
 					sell.clear();
+					BGTaskV2.buy.clear();
+					BGTaskV2.sell.clear();
 					TimeUnit.HOURS.sleep(24);
 				}
 				if (new Date().getHours() == 9 && new Date().getMinutes() == 00 && isTradingOn()) {
 					buy.clear();
 					sell.clear();
+					BGTaskV2.buy.clear();
+					BGTaskV2.sell.clear();
 					System.out.println("Auto Trading ON....");
 				}
 				if (new Date().getHours() >= 9 && (new Date().getHours() < 15
@@ -103,12 +111,15 @@ public class BGTask implements Runnable {
 						} else if (data.getBuyPrice() > 0) {
 							//insert(data, true);
 						}
+						new BGTaskV2().runV2(data);
 					}
 				}
 
 				if (new Date().getHours() >= 16 || (new Date().getHours() == 15 && new Date().getMinutes() > 37)) {
 					buy.clear();
 					sell.clear();
+					BGTaskV2.buy.clear();
+					BGTaskV2.sell.clear();
 					date = null;
 					System.out.println("sleeping now for " + (31 - new Date().getHours()) + " .....");
 					TimeUnit.HOURS.sleep(31 - new Date().getHours());
