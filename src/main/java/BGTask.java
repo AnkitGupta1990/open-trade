@@ -121,6 +121,7 @@ public class BGTask implements Runnable {
 					BGTaskV2.buy.clear();
 					BGTaskV2.sell.clear();
 					date = null;
+					CommonUtil.closeDBConnection();
 					System.out.println("sleeping now for " + (31 - new Date().getHours()) + " .....");
 					TimeUnit.HOURS.sleep(31 - new Date().getHours());
 				}

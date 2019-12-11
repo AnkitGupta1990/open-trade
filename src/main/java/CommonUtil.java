@@ -32,9 +32,9 @@ public class CommonUtil {
 	public static void closeDBConnection() {
 		try {
 			if (stmt != null)
-				conn.close();
+				stmt.close();
 		} catch (SQLException se) {
-
+			se.printStackTrace();
 		}
 		try {
 			if (conn != null)
