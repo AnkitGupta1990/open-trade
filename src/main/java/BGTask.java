@@ -78,7 +78,7 @@ public class BGTask implements Runnable {
 				}
 				if (new Date().getHours() >= 9 && (new Date().getHours() < 15
 						|| (new Date().getHours() == 15 && new Date().getMinutes() <= 35))) {
-					LiveOptionPriceFetcher.getLivePriceDummy();
+					LiveOptionPriceFetcher.getLivePrice();
 					Iterator<OptionData> iterator = LiveOptionPriceFetcher.list.iterator();
 					while (iterator.hasNext()) {
 						OptionData data = iterator.next();
