@@ -84,6 +84,7 @@ public class DataUploader {
 					+ "', '" + Double.parseDouble(file[11].trim()) + "', '" + Double.parseDouble(file[12].trim()) + "', '" + Double.parseDouble(file[13].trim())
 					+ "', '" + new java.sql.Date(date.getTime()) + "');";
 			//System.out.println(sql);
+			System.out.print(".");
 			insertInDB(sql);
 		}
 	}
@@ -150,6 +151,7 @@ public class DataUploader {
 								+ ", " + Double.parseDouble(rateStr[4]) + ", " + Double.parseDouble(rateStr[5]) 
 								+ ", " + Double.parseDouble(rateStr[6]) + ", '" + rateStr[0].trim() + "', '" + rateStr[1].trim() + "',"
 								+  Integer.parseInt(rateStr[8]) + " , " + Integer.parseInt(file[5]) + " , " + + Integer.parseInt(rateStr[11]) + " , " + Double.parseDouble(file[6]) + ");";
+						System.out.print(".");
 						insertInDB(sql);
 						break;
 					}
