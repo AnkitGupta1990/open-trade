@@ -11,6 +11,7 @@ public class BGTaskV2 {
 	static Set<String> sell = new HashSet<>();
 	
 	public void runV2(OptionData data) {
+		boolean old_sell = data.isSell();
 		try {
 			if ((new Date().getHours() > 9 || new Date().getHours() == 9 && new Date().getMinutes() >= 30) && 
 					(new Date().getHours() < 15 || (new Date().getHours() == 15 && new Date().getMinutes() <= 35))) {
@@ -29,6 +30,7 @@ public class BGTaskV2 {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		data.setSell(old_sell);
 	}
 
 	public void insert(OptionData data) throws SQLException {
