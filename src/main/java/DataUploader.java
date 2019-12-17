@@ -11,7 +11,10 @@ import java.util.Date;
 public class DataUploader {
 	
 	public static void insertInDB(String sql) throws SQLException {
+		CommonUtil.closeDBConnection();
+		CommonUtil.openDBConnection();
 		CommonUtil.stmt.executeUpdate(sql);
+		CommonUtil.closeDBConnection();
 	}
 	
 	public static void main(String[] args) throws ParseException, Exception {
