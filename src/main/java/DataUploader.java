@@ -11,10 +11,10 @@ import java.util.Date;
 public class DataUploader {
 	
 	public static void insertInDB(String sql) throws SQLException {
-		CommonUtil.closeDBConnection();
-		CommonUtil.openDBConnection();
+		//CommonUtil.closeDBConnection();
+		//CommonUtil.openDBConnection();
 		CommonUtil.stmt.executeUpdate(sql);
-		CommonUtil.closeDBConnection();
+		//CommonUtil.closeDBConnection();
 	}
 	
 	public static void main(String[] args) throws ParseException, Exception {
@@ -41,7 +41,7 @@ public class DataUploader {
 				exec = Runtime.getRuntime().exec("rm " + zipFile);
 				exec.waitFor();
 			}
-			
+			System.out.println(csvFile);
 			if(!new File(csvFile).exists()) {
 				return;
 			}
@@ -66,6 +66,7 @@ public class DataUploader {
 	}
 	
 	private static void writeToDB(String csvFile) throws Exception {
+		System.out.println("writeToDB");
 		BufferedReader br = new BufferedReader(new FileReader(csvFile));
 		String line = "";
 		String cvsSplitBy = ",";
