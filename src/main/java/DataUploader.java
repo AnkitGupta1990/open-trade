@@ -34,7 +34,7 @@ public class DataUploader {
 			
 			if(!loadFromLocal) {
 				System.out.println("Fetching from web for option data ...");
-				Process exec = Runtime.getRuntime().exec("wget https://www.nseindia.com/content/historical/DERIVATIVES/" + new SimpleDateFormat("yyyy").format(date) + "/" + new SimpleDateFormat("MMM").format(date).toUpperCase() + "/fo" + df.format(date).toUpperCase() + "bhav.csv.zip" +" --user-agent='Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36' -P " + folder);
+				Process exec = Runtime.getRuntime().exec("wget -U Mozilla/5.0 https://www.nseindia.com/content/historical/DERIVATIVES/" + new SimpleDateFormat("yyyy").format(date) + "/" + new SimpleDateFormat("MMM").format(date).toUpperCase() + "/fo" + df.format(date).toUpperCase() + "bhav.csv.zip" +" -P " + folder);
 				exec.waitFor();
 				exec = Runtime.getRuntime().exec("unzip " + zipFile + " -d " + folder);
 			    exec.waitFor();
@@ -111,7 +111,7 @@ public class DataUploader {
 			
 			if(!loadFromLocal) {
 				System.out.println("Fetching from web for stocks data ...");
-				Process exec = Runtime.getRuntime().exec("wget https://www.nseindia.com/content/historical/EQUITIES/2019/"+df2.format(date).toUpperCase()+"/cm" + df3.format(date).toUpperCase() + "2019bhav.csv.zip --user-agent='Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36' -O " + csvFileRateZip);
+				Process exec = Runtime.getRuntime().exec("wget -U Mozilla/5.0 https://www.nseindia.com/content/historical/EQUITIES/2019/"+df2.format(date).toUpperCase()+"/cm" + df3.format(date).toUpperCase() + "2019bhav.csv.zip -O " + csvFileRateZip);
 				exec.waitFor();
 				exec = Runtime.getRuntime().exec("unzip " + csvFileRateZip + " -d " + folder);
 				exec.waitFor();
@@ -119,7 +119,7 @@ public class DataUploader {
 				exec.waitFor();
 				exec = Runtime.getRuntime().exec("rm " + csvFileRateZip);
 				exec.waitFor();
-				exec = Runtime.getRuntime().exec("wget https://www.nseindia.com/archives/equities/mto/MTO_" + df.format(date) + "2019.DAT --user-agent='Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36' -O " + csvFile);
+				exec = Runtime.getRuntime().exec("wget -U Mozilla/5.0 https://www.nseindia.com/archives/equities/mto/MTO_" + df.format(date) + "2019.DAT -O " + csvFile);
 				exec.waitFor();
 			}
 			
