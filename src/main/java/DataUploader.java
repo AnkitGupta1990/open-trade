@@ -34,7 +34,9 @@ public class DataUploader {
 			
 			if(!loadFromLocal) {
 				System.out.println("Fetching from web for option data ...");
-				Process exec = Runtime.getRuntime().exec("wget -U Mozilla/5.0 https://www.nseindia.com/content/historical/DERIVATIVES/" + new SimpleDateFormat("yyyy").format(date) + "/" + new SimpleDateFormat("MMM").format(date).toUpperCase() + "/fo" + df.format(date).toUpperCase() + "bhav.csv.zip" +" -P " + folder);
+				String str = "wget -U Mozilla/5.0 https://www.nseindia.com/content/historical/DERIVATIVES/" + new SimpleDateFormat("yyyy").format(date) + "/" + new SimpleDateFormat("MMM").format(date).toUpperCase() + "/fo" + df.format(date).toUpperCase() + "bhav.csv.zip" +" -P " + folder;
+				System.out.println(str);
+				Process exec = Runtime.getRuntime().exec(str);
 				exec.waitFor();
 				exec = Runtime.getRuntime().exec("unzip " + zipFile + " -d " + folder);
 			    exec.waitFor();
