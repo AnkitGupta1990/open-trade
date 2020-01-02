@@ -21,7 +21,7 @@ public class LiveOptionPriceFetcher {
 			}
 			try {
 				//System.out.println("fetching from web for " + data.getSymbol() + " " + data.getType() + " " + data.getStrikePrice());
-				String query = "underlying="+data.getSymbol()+"&instrument=OPTSTK&expiry=26DEC2019&type="+data.getType()+"&strike="+String.format("%.2f", data.getStrikePrice());
+				String query = "underlying="+data.getSymbol()+"&instrument=OPTSTK&expiry=30JAN2020&type="+data.getType()+"&strike="+String.format("%.2f", data.getStrikePrice());
 				String[] command = new String[]{"curl", "https://www.nseindia.com/live_market/dynaContent/live_watch/get_quote/ajaxFOGetQuoteJSON.jsp?"+query+"", "-H", "User-Agent: Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)", "-H", "Accept: */*", "-H", "Referer: https://www.nseindia.com/"};
 				executeCommand(command);
 				Gson gson = new Gson();

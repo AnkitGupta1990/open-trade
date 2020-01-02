@@ -120,7 +120,7 @@ public class OpenShiftTodayStocksUpdater extends HttpServlet {
 	}
 
 	public static void getDates() throws Exception {
-		String sql = "select distinct date from STable_2019 order by date desc limit 1";
+		String sql = "select distinct date from STable_2020 order by date desc limit 1";
 		ResultSet rs = CommonUtil.stmt.executeQuery(sql);
 		rs.next();
 		latestDBDate = rs.getDate(1);

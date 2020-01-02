@@ -82,7 +82,7 @@ public class DataUploader {
 			if(date.getMonth() != expiryDate.getMonth()) {
 				continue;
 			}
-			String sql = "INSERT IGNORE INTO Option_History_V2_2019 (INSTRUMENT, SYMBOL, EXPIRY_DT, STRIKE_PR, OPTION_TYP, `OPEN`, HIGH, LOW, `CLOSE`, SETTLE_PR, CONTRACTS, VAL_INLAKH, OPEN_INT, CHG_IN_OI, `DATE`) "
+			String sql = "INSERT IGNORE INTO Option_History_V2_2020 (INSTRUMENT, SYMBOL, EXPIRY_DT, STRIKE_PR, OPTION_TYP, `OPEN`, HIGH, LOW, `CLOSE`, SETTLE_PR, CONTRACTS, VAL_INLAKH, OPEN_INT, CHG_IN_OI, `DATE`) "
 					+ "VALUES ('" + file[0].trim() + "', '" + file[1].trim() + "', '" + file[2].trim() 
 					+ "', '" + Double.parseDouble(file[3].trim()) + "', '" + file[4].trim() 
 					+ "', '" + Double.parseDouble(file[5].trim()) + "', '" + Double.parseDouble(file[6].trim()) + "', '" + Double.parseDouble(file[7].trim())
@@ -113,15 +113,15 @@ public class DataUploader {
 			
 			if(!loadFromLocal) {
 				System.out.println("Fetching from web for stocks data ...");
-				Process exec = Runtime.getRuntime().exec("wget -U Mozilla/5.0 https://www.nseindia.com/content/historical/EQUITIES/2019/"+df2.format(date).toUpperCase()+"/cm" + df3.format(date).toUpperCase() + "2019bhav.csv.zip -O " + csvFileRateZip);
+				Process exec = Runtime.getRuntime().exec("wget -U Mozilla/5.0 https://www.nseindia.com/content/historical/EQUITIES/2020/"+df2.format(date).toUpperCase()+"/cm" + df3.format(date).toUpperCase() + "2020bhav.csv.zip -O " + csvFileRateZip);
 				exec.waitFor();
 				exec = Runtime.getRuntime().exec("unzip " + csvFileRateZip + " -d " + folder);
 				exec.waitFor();
-				exec = Runtime.getRuntime().exec("mv " + folder + "/cm" + df3.format(date).toUpperCase() +"2019bhav.csv " + csvFileRate);
+				exec = Runtime.getRuntime().exec("mv " + folder + "/cm" + df3.format(date).toUpperCase() +"2020bhav.csv " + csvFileRate);
 				exec.waitFor();
 				exec = Runtime.getRuntime().exec("rm " + csvFileRateZip);
 				exec.waitFor();
-				exec = Runtime.getRuntime().exec("wget -U Mozilla/5.0 https://www.nseindia.com/archives/equities/mto/MTO_" + df.format(date) + "2019.DAT -O " + csvFile);
+				exec = Runtime.getRuntime().exec("wget -U Mozilla/5.0 https://www.nseindia.com/archives/equities/mto/MTO_" + df.format(date) + "2020.DAT -O " + csvFile);
 				exec.waitFor();
 			}
 			
@@ -152,7 +152,7 @@ public class DataUploader {
 				while ((csvFileDay1RateLine = br1.readLine()) != null) {
 					String[] rateStr = csvFileDay1RateLine.split(cvsSplitBy);
 					if(rateStr[0].trim().equalsIgnoreCase(file[2].trim()) && rateStr[1].trim().equalsIgnoreCase(file[3].trim())) {
-						String sql = "INSERT IGNORE INTO STable_2019 (`date`, `open`, high, low, `close`, `last`, name, `type`, total_volume, deliver_volumne, trade_count, del_perct) "
+						String sql = "INSERT IGNORE INTO STable_2020 (`date`, `open`, high, low, `close`, `last`, name, `type`, total_volume, deliver_volumne, trade_count, del_perct) "
 								+ "VALUES ('" + new java.sql.Date((new SimpleDateFormat("dd-MMM-yyyy").parse(rateStr[10].trim())).getTime()) + "', " + Double.parseDouble(rateStr[2]) + ", " + Double.parseDouble(rateStr[3]) 
 								+ ", " + Double.parseDouble(rateStr[4]) + ", " + Double.parseDouble(rateStr[5]) 
 								+ ", " + Double.parseDouble(rateStr[6]) + ", '" + rateStr[0].trim() + "', '" + rateStr[1].trim() + "',"
