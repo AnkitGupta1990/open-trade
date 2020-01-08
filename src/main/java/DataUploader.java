@@ -34,7 +34,7 @@ public class DataUploader {
 			
 			if(!loadFromLocal) {
 				System.out.println("Fetching from web for option data ...");
-				String str = "wget -U Mozilla/5.0 https://www.nseindia.com/content/historical/DERIVATIVES/" + new SimpleDateFormat("yyyy").format(date) + "/" + new SimpleDateFormat("MMM").format(date).toUpperCase() + "/fo" + df.format(date).toUpperCase() + "bhav.csv.zip" +" -P " + folder;
+				String str = "wget -U Mozilla/5.0 https://www1.nseindia.com/content/historical/DERIVATIVES/" + new SimpleDateFormat("yyyy").format(date) + "/" + new SimpleDateFormat("MMM").format(date).toUpperCase() + "/fo" + df.format(date).toUpperCase() + "bhav.csv.zip" +" -P " + folder;
 				System.out.println(str);
 				Process exec = Runtime.getRuntime().exec(str);
 				exec.waitFor();
@@ -113,7 +113,7 @@ public class DataUploader {
 			
 			if(!loadFromLocal) {
 				System.out.println("Fetching from web for stocks data ...");
-				Process exec = Runtime.getRuntime().exec("wget -U Mozilla/5.0 https://www.nseindia.com/content/historical/EQUITIES/2020/"+df2.format(date).toUpperCase()+"/cm" + df3.format(date).toUpperCase() + "2020bhav.csv.zip -O " + csvFileRateZip);
+				Process exec = Runtime.getRuntime().exec("wget -U Mozilla/5.0 https://www1.nseindia.com/content/historical/EQUITIES/2020/"+df2.format(date).toUpperCase()+"/cm" + df3.format(date).toUpperCase() + "2020bhav.csv.zip -O " + csvFileRateZip);
 				exec.waitFor();
 				exec = Runtime.getRuntime().exec("unzip " + csvFileRateZip + " -d " + folder);
 				exec.waitFor();
@@ -121,7 +121,7 @@ public class DataUploader {
 				exec.waitFor();
 				exec = Runtime.getRuntime().exec("rm " + csvFileRateZip);
 				exec.waitFor();
-				exec = Runtime.getRuntime().exec("wget -U Mozilla/5.0 https://www.nseindia.com/archives/equities/mto/MTO_" + df.format(date) + "2020.DAT -O " + csvFile);
+				exec = Runtime.getRuntime().exec("wget -U Mozilla/5.0 https://www1.nseindia.com/archives/equities/mto/MTO_" + df.format(date) + "2020.DAT -O " + csvFile);
 				exec.waitFor();
 			}
 			
