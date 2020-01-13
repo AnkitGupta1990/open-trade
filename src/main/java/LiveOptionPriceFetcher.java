@@ -63,6 +63,7 @@ public class LiveOptionPriceFetcher {
 	private static void executeCommand(String... command) throws Exception {
 	  ProcessBuilder builder = new ProcessBuilder(command);
 	  builder.redirectOutput(new File("curloutput.txt"));
+	  builder.redirectError(new File("curloutputerror.txt"));
 	  Process start = builder.start();
 	  start.waitFor();
 	}
