@@ -76,7 +76,7 @@ public class BGTask implements Runnable {
 					BGTaskV2.sell.clear();
 					System.out.println("Auto Trading ON....");
 				}
-				if (new Date().getHours() >= 9 && (new Date().getHours() < 15
+				if (new Date().getHours() >= 9 && (new Date().getHours() < 20
 						|| (new Date().getHours() == 15 && new Date().getMinutes() <= 35))) {
 					LiveOptionPriceFetcher.getLivePrice();
 					Iterator<OptionData> iterator = LiveOptionPriceFetcher.list.iterator();
@@ -115,7 +115,7 @@ public class BGTask implements Runnable {
 					}
 				}
 
-				if (new Date().getHours() >= 16 || (new Date().getHours() == 15 && new Date().getMinutes() > 37)) {
+				if (new Date().getHours() >= 20 || (new Date().getHours() == 15 && new Date().getMinutes() > 37)) {
 					buy.clear();
 					sell.clear();
 					BGTaskV2.buy.clear();

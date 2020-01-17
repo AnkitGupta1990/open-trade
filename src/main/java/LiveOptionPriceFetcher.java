@@ -1,6 +1,11 @@
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.InputStreamReader;
+import java.io.StringReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -25,9 +30,11 @@ public class LiveOptionPriceFetcher {
 				String query = "underlying="+data.getSymbol()+"&instrument=OPTSTK&expiry=30JAN2020&type="+data.getType()+"&strike="+String.format("%.2f", data.getStrikePrice());
 				String[] command = new String[]{"curl", "https://www1.nseindia.com/live_market/dynaContent/live_watch/get_quote/ajaxFOGetQuoteJSON.jsp?"+query+"","--compressed","-H", "Accept-Language: en-US,en;q=0.5", "-H", "User-Agent: Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)", "-H", "Accept: */*", "-H", "Referer: https://www.nseindia.com/"};
 				System.out.println(Arrays.asList(command).toString());
-				executeCommand(command);
+				//executeCommand(command);
+				String response = executeCommandV2(query);
 				Gson gson = new Gson();
-				OptionLiveDataMain data1 = gson.fromJson(new JsonReader(new FileReader(new File("curloutput.txt"))), OptionLiveDataMain.class);
+				//OptionLiveDataMain data1 = gson.fromJson(new JsonReader(new FileReader(new File("curloutput.txt"))), OptionLiveDataMain.class);
+				OptionLiveDataMain data1 = gson.fromJson(new JsonReader(new StringReader(response)), OptionLiveDataMain.class);
 				//System.out.println("Valid : " + data1.getValid());
 				data.setBuyPrice(Double.parseDouble(data1.getData().get(0).getSellPrice1().replace(",", "")));
 				data.setSellPrice(Double.parseDouble(data1.getData().get(0).getBuyPrice1().replace(",", "")));
@@ -67,4 +74,33 @@ public class LiveOptionPriceFetcher {
 	  Process start = builder.start();
 	  start.waitFor();
 	}
+	
+	private static String executeCommandV2(String query) {
+        try {
+            URL url = new URL("https://www1.nseindia.com/live_market/dynaContent/live_watch/get_quote/ajaxFOGetQuoteJSON.jsp?"+query);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+            conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)");
+            conn.setRequestProperty("Accept", "*/*");
+            conn.setRequestProperty("Referer", "https://www.nseindia.com/");
+            if (conn.getResponseCode() != 200) {
+                throw new RuntimeException("Failed : HTTP Error code : "
+                        + conn.getResponseCode());
+            }
+            InputStreamReader in = new InputStreamReader(conn.getInputStream());
+            BufferedReader br = new BufferedReader(in);
+            String finalRes = "";
+            String output;
+            while ((output = br.readLine()) != null) {
+            	finalRes += output;
+            }
+            //System.out.println(finalRes);
+            conn.disconnect();
+            return finalRes;
+        } catch (Exception e) {
+            //System.out.println("Exception :- " + e);
+        	return "";
+        }
+    }
 }
