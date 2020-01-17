@@ -1,7 +1,6 @@
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.HttpURLConnection;
@@ -10,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+
+import javax.net.ssl.SSLContext;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
@@ -77,6 +78,9 @@ public class LiveOptionPriceFetcher {
 	
 	private static String executeCommandV2(String query) {
         try {
+        	SSLContext ctx = SSLContext.getInstance("TLSv1.2");
+            ctx.init(null, null, null);
+            SSLContext.setDefault(ctx);
             URL url = new URL("https://www1.nseindia.com/live_market/dynaContent/live_watch/get_quote/ajaxFOGetQuoteJSON.jsp?"+query);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
