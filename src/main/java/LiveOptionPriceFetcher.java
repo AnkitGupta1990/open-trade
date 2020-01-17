@@ -103,7 +103,7 @@ public class LiveOptionPriceFetcher {
             conn.disconnect();
             return finalRes;
         } catch (Exception e) {
-            //System.out.println("Exception :- " + e);
+            System.out.println("Exception :- " + e);
         	return "";
         }
     }
