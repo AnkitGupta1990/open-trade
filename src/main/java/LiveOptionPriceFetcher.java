@@ -88,7 +88,7 @@ public class LiveOptionPriceFetcher {
             conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)");
             conn.setRequestProperty("Accept", "*/*");
             conn.setRequestProperty("Referer", "https://www.nseindia.com/");
-            conn.setReadTimeout(60000);
+            //conn.setReadTimeout(60000);
             System.out.println(conn);
             if (conn.getResponseCode() != 200) {
                 throw new RuntimeException("Failed : HTTP Error code : "
@@ -101,7 +101,7 @@ public class LiveOptionPriceFetcher {
             while ((output = br.readLine()) != null) {
             	finalRes += output;
             }
-            //System.out.println(finalRes);
+            System.out.println(finalRes);
             conn.disconnect();
             return finalRes;
         } catch (Exception e) {
