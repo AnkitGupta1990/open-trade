@@ -87,6 +87,7 @@ public class LiveOptionPriceFetcher {
             conn.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
             conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)");
             conn.setRequestProperty("Accept", "*/*");
+            conn.setRequestProperty("X-Requested-With", "XMLHttpRequest");
             conn.setRequestProperty("Referer", "https://www.nseindia.com/");
             //conn.setReadTimeout(60000);
             System.out.println(conn);
