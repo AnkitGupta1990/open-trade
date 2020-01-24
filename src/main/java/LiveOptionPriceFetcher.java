@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -78,6 +79,7 @@ public class LiveOptionPriceFetcher {
 	
 	private static String executeCommandV2(String query) {
         try {
+        	query = URLEncoder.encode(query,java.nio.charset.StandardCharsets.UTF_8.toString());
         	SSLContext ctx = SSLContext.getInstance("TLSv1.2");
             ctx.init(null, null, null);
             SSLContext.setDefault(ctx);
